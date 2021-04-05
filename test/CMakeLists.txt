@@ -1,0 +1,41 @@
+cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
+
+find_package(GTest REQUIRED)
+
+add_executable(colors_test
+  src/Color/Color.h
+  src/Color/Color.enum
+  src/Color/colors.cpp)
+
+# target_compile_options(colors_test
+#  PRIVATE
+#   -E
+#   -P)
+
+target_include_directories(colors_test
+  PRIVATE
+    ${PROJECT_SOURCE_DIR}/test/src/Color)
+
+target_link_libraries(colors_test
+  PRIVATE
+    ${PROJECT_NAME}
+    gtest
+    gmock
+    gtest_main
+    pthread)
+
+add_test(colors_test colors_test)
+
+
+add_executable(colors_example
+  src/Color/Color.h
+  src/Color/Color.enum
+  src/Color/main.cpp)
+
+target_include_directories(colors_example
+  PRIVATE
+    ${PROJECT_SOURCE_DIR}/test/src/Color)
+
+target_link_libraries(colors_example
+  PRIVATE
+    ${PROJECT_NAME})

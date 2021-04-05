@@ -1,0 +1,59 @@
+name: C++ CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: show checkout path
+      run: |
+           echo $GITHUB_WORKSPACE
+    - name: install package dependencies
+      run: |
+           sudo apt-get update
+           sudo apt-get install --yes build-essential googletest git cmake
+    - name: build/install googletest dependency
+      run: |
+           sudo mkdir -p /usr/src/googletest/build
+           cd /usr/src/googletest/build
+           sudo cmake ..
+           sudo make install -j${nproc}
+    - name: configure
+      run: |
+           mkdir -p $GITHUB_WORKSPACE/build
+           cd $GITHUB_WORKSPACE/build
+           cmake .. -DCMAKE_BUILD_TYPE=Release
+    - name: make
+      run: |
+           cd $GITHUB_WORKSPACE/build
+           make -j${nproc}
+    - name: test
+      run: |
+           cd $GITHUB_WORKSPACE/build
+           ctest -j${nproc}
+    - name: install
+      run: |
+           cd $GITHUB_WORKSPACE/build
+           sudo make install
+    - name: smoke-test color_example
+      run: |
+           cd $GITHUB_WORKSPACE/build/test
+           ./colors_example
+    - name: smoke-test heroes_example
+      run: |
+           mkdir -p $GITHUB_WORKSPACE/example/build
+           cd $GITHUB_WORKSPACE/example/build
+           cmake ..
+           make -j${nproc}
+           ./heroes
