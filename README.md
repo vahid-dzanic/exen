@@ -7,6 +7,7 @@
     - [Create Enumeration with EXEN](#create-enumeration-with-exen)
       - [For CMake projects](#for-cmake-projects)
     - [Use Created Enumeration](#use-created-enumeration)
+  - [Requires](#requires)
   - [Design Description](#design-description)
     - [The preprocessed ```Color.h```-file](#the-preprocessed-colorh-file)
       - [```Color.h```-file (without showing detail namespace)](#colorh-file-without-showing-detail-namespace)
@@ -146,6 +147,8 @@ BLUE
 3
 The underlying Type of color enum is std::uint8_t = true
 ```
+## Requires
+C++11 capable compiler
 
 ## Design Description
 The library consists of one header file ```exen.h```. In order to use the header-file some preconditions has to be fulfilled.
