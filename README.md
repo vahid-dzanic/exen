@@ -52,9 +52,9 @@ Create a file called Color.enum with following content:
 
 ```cpp
 //Color.enum
-__EXEN_ENTRY(RED)
-__EXEN_ENTRY(GREEN)
-__EXEN_ENTRY(BLUE)
+__EXEN_ENUM_ENTRY(RED)
+__EXEN_ENUM_ENTRY(GREEN)
+__EXEN_ENUM_ENTRY(BLUE)
 ```
 
 Make sure that the Color.enum-file directory is in your buildsystems include-path.
@@ -152,9 +152,9 @@ C++11 capable compiler
 
 ## Design Description
 The library consists of one header file ```exen.h```. In order to use the header-file some preconditions has to be fulfilled.
-* The filename where the ```__EXEN_ENTRY```'s are defined must correspond (case sensitive) to the ```__EXEN_ENUM_NAME``` defined name.
-* The filename where the ```__EXEN_ENTRY```'s are defined must have the ```.enum``` extension
-* There must be one or more ```__EXEN_ENTRY```'s defined.
+* The filename where the ```__EXEN_ENUM_ENTRY```'s are defined must correspond (case sensitive) to the ```__EXEN_ENUM_NAME``` defined name.
+* The filename where the ```__EXEN_ENUM_ENTRY```'s are defined must have the ```.enum``` extension
+* There must be one or more ```__EXEN_ENUM_ENTRY```'s defined.
 * Directories with ```*.enum``` files must be declared in the build-systems include-path.
 * Include the ```exen/exen.h```-header-file after the declarations ```__EXEN_ENUM_NAME``` and ```__EXEN_NAMESPACE```
 
