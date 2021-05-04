@@ -63,6 +63,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
+    - name: show checkout path
+      run: |
+           echo $GITHUB_WORKSPACE
     - name: deploy
       uses: peaceiris/actions-github-pages@v3
       with:
