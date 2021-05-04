@@ -1,979 +1,143 @@
-<!DOCTYPE html>
-<html lang="en-us" prefix="og: http://ogp.me/ns#">
-
-<head>
-	<meta name="generator" content="Hugo 0.82.0" />
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <title>exen</title>
-  
-  <meta name="author" content="Vahid Dzanic">
-  
-
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-  
-  <link
-    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext"
-    rel="stylesheet">
-
-  
-  <link rel="stylesheet" type='text/css' media='all' href="css/webslides.css">
-  <link rel="stylesheet" type="text/css" media="all" href="css/svg-icons.css">
-  
-
-  
-  <link rel="shortcut icon" sizes="16x16" href="/img/favicons/favicon.png">
-  <link rel="shortcut icon" sizes="32x32" href="/img/favicons/favicon-32.png">
-  <link rel="apple-touch-icon icon" sizes="76x76" href="/img/favicons/favicon-76.png">
-  <link rel="apple-touch-icon icon" sizes="120x120" href="/img/favicons/favicon-120.png">
-  <link rel="apple-touch-icon icon" sizes="152x152" href="/img/favicons/favicon-152.png">
-  <link rel="apple-touch-icon icon" sizes="180x180" href="/img/favicons/favicon-180.png">
-  <link rel="apple-touch-icon icon" sizes="192x192" href="/img/favicons/favicon-192.png">
-
-  
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#333333">
-  
-</head>
-
-<body>
-  
-  <main role="main">
-    <article id="webslides">
-      
-
-
-  
-
-      
-      
-      
-
-      
-  
-      <section id="slide1" class="bg-black aligncenter">
-        <span class="background" style="background-image:url('images/code1.jpg')"></span>
-        <div class="wrap fadeInUp size-70">
-
-
-
-<h1 id="exen"><strong>EXEN</strong></h1>
-
-<p class="text-intro">extended enumerations for C++</p>
-
-<p><a href="https://github.com/vahid-dzanic/exen"><svg class="fa-github">
-  <use xlink:href="#fa-github"></use>
-</svg>
-github.com/vahid-dzanic/exen</a></p>
-
-<p>2021</p>
-
- </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide2">
-        <div class="wrap">
-
-
-
-
-          <div class="grid vertical-align">
-            <div class="column">
-
-<h1 id="motivation">motivation</h1>
-
-</div>
-            <div class="column">
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<h4 id="to-string-converter">to string converter</h4>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<h4 id="enumeration-with-compile-time-reflection">enumeration with compile-time reflection</h4>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<h4 id="optimized-in-memory-consumption">optimized in memory consumption</h4>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<h4 id="enumeration-in-multiple-files-distributable">enumeration in multiple files distributable</h4>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<h4 id="language-builtin">language builtin</h4>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<!-- <footer><span class="alignright">April 2021 Vahid Dzanic</span></footer> -->
-
-</div>
-          </div> </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide3">
-        <div class="wrap">
-
-
-
-<h1 id="issue">issue</h1>
-
-<ul class="flexblock">
-<li><div>
-  <h6>
-    no element count information
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Color</span> {
+<!doctype html><html lang=en-us prefix="og: http://ogp.me/ns#"><head><meta name=generator content="Hugo 0.82.0"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>exen</title><meta name=author content="Vahid Dzanic"><meta charset=utf-8><link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&subset=latin-ext" rel=stylesheet><link rel=stylesheet type=text/css media=all href=css/webslides.css><link rel=stylesheet type=text/css media=all href=css/svg-icons.css><link rel="shortcut icon" sizes=16x16 href=/img/favicons/favicon.png><link rel="shortcut icon" sizes=32x32 href=/img/favicons/favicon-32.png><link rel="apple-touch-icon icon" sizes=76x76 href=/img/favicons/favicon-76.png><link rel="apple-touch-icon icon" sizes=120x120 href=/img/favicons/favicon-120.png><link rel="apple-touch-icon icon" sizes=152x152 href=/img/favicons/favicon-152.png><link rel="apple-touch-icon icon" sizes=180x180 href=/img/favicons/favicon-180.png><link rel="apple-touch-icon icon" sizes=192x192 href=/img/favicons/favicon-192.png><meta name=mobile-web-app-capable content="yes"><meta name=theme-color content="#333333"></head><body><main role=main><article id=webslides><section id=slide1 class="bg-black aligncenter"><span class=background style=background-image:url(images/code1.jpg)></span><div class="wrap fadeInUp size-70"><h1 id=exen><strong>EXEN</strong></h1><p class=text-intro>extended enumerations for C++</p><p><a href=https://github.com/vahid-dzanic/exen><svg class="fa-github"><use xlink:href="#fa-github"/></svg>github.com/vahid-dzanic/exen</a></p><p>2021</p></div></section><section id=slide2><div class=wrap><div class="grid vertical-align"><div class=column><h1 id=motivation>motivation</h1></div><div class=column><p><span style=color:transparent>-</span></p><h4 id=to-string-converter>to string converter</h4><p><span style=color:transparent>-</span></p><h4 id=enumeration-with-compile-time-reflection>enumeration with compile-time reflection</h4><p><span style=color:transparent>-</span></p><h4 id=optimized-in-memory-consumption>optimized in memory consumption</h4><p><span style=color:transparent>-</span></p><h4 id=enumeration-in-multiple-files-distributable>enumeration in multiple files distributable</h4><p><span style=color:transparent>-</span></p><h4 id=language-builtin>language builtin</h4><p><span style=color:transparent>-</span></p></div></div></div></section><section id=slide3><div class=wrap><h1 id=issue>issue</h1><ul class=flexblock><li><div><h6>no element count information</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>Color</span> {
   Green,
   Black,
   Blue,
   Red,
-  COUNT <span style="color:#75715e">// &lt;-- workaround
-</span><span style="color:#75715e"></span>};
-</code></pre></div>
-<p>but now there is an artificial entry nothing to do with the enumeration <code>Color</code> itself.</p>
-
-</div>
-</li>
-
-<li><div>
-  <h6>
-    no information about the first or last entry
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Color</span> {
+  COUNT <span style=color:#75715e>// &lt;-- workaround
+</span><span style=color:#75715e></span>};
+</code></pre></div><p>but now there is an artificial entry nothing to do with the enumeration <code>Color</code> itself.</p></div></li><li><div><h6>no information about the first or last entry</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>Color</span> {
   Green,
-  FIRST <span style="color:#f92672">=</span> Green, <span style="color:#75715e">//workaround
-</span><span style="color:#75715e"></span>  Black,
+  FIRST <span style=color:#f92672>=</span> Green, <span style=color:#75715e>//workaround
+</span><span style=color:#75715e></span>  Black,
   Blue,
   Red,
-  LAST <span style="color:#f92672">=</span> Red, <span style="color:#75715e">//workaround
-</span><span style="color:#75715e"></span>};
-</code></pre></div>
-<p>again artificial entries have nothing to do with the enumeration Color itself.</p>
-
-<p>And it&rsquo;s very easy to break by just adding an entry at the wrong place.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Color</span> {
+  LAST <span style=color:#f92672>=</span> Red, <span style=color:#75715e>//workaround
+</span><span style=color:#75715e></span>};
+</code></pre></div><p>again artificial entries have nothing to do with the enumeration Color itself.</p><p>And it&rsquo;s very easy to break by just adding an entry at the wrong place.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>Color</span> {
   Purple,
   Green,
-  FIRST <span style="color:#f92672">=</span> Green, <span style="color:#75715e">//workaround
-</span><span style="color:#75715e"></span>  Black,
+  FIRST <span style=color:#f92672>=</span> Green, <span style=color:#75715e>//workaround
+</span><span style=color:#75715e></span>  Black,
   Blue,
   Red,
-  LAST <span style="color:#f92672">=</span> Red, <span style="color:#75715e">//workaround
-</span><span style="color:#75715e"></span>};
-</code></pre></div>
-</div>
-</li>
-
-<li><div>
-  <h6>
-    no string conversion
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Color</span> {
+  LAST <span style=color:#f92672>=</span> Red, <span style=color:#75715e>//workaround
+</span><span style=color:#75715e></span>};
+</code></pre></div></div></li><li><div><h6>no string conversion</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>Color</span> {
   Green,
   Black,
   Blue,
   Red
 };
-std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> Color<span style="color:#f92672">::</span>Blue;
-</code></pre></div>
-<ul>
-<li><p>output:</p>
-<pre><code>2</code></pre></li>
-</ul>
-
-</div>
-</li>
-</ul>
-
-<!-- <span style="color:rgba(0, 0, 0, 0)">-</span>
-
-<footer><span class="alignright">April 2021 Vahid Dzanic</span></footer> -->
-
- </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide4">
-        <div class="wrap">
-
-
-
-<h1 id="issue-1">issue</h1>
-
-<ul class="flexblock">
-<li><div>
-  <h6>
-    cache misses? yes please
-  </h6>
-  <p>By default the underlying type of an enumeration is <code>unsigned int</code> which is on most architectures 32bit, it can handle 4&rsquo;294&rsquo;967&rsquo;296 entries.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Color1</span> { RED, GREEN, BLUE };
-<span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Color2</span> <span style="color:#f92672">:</span> std<span style="color:#f92672">::</span><span style="color:#66d9ef">uint8_t</span> { BLACK, WHITE, GREY };
+std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> Color<span style=color:#f92672>::</span>Blue;
+</code></pre></div><ul><li><p>output:</p><pre><code>2</code></pre></li></ul></div></li></ul></div></section><section id=slide4><div class=wrap><h1 id=issue-1>issue</h1><ul class=flexblock><li><div><h6>cache misses? yes please</h6><p>By default the underlying type of an enumeration is <code>unsigned int</code> which is on most architectures 32bit, it can handle 4&rsquo;294&rsquo;967&rsquo;296 entries.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>Color1</span> { RED, GREEN, BLUE };
+<span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>Color2</span> <span style=color:#f92672>:</span> std<span style=color:#f92672>::</span><span style=color:#66d9ef>uint8_t</span> { BLACK, WHITE, GREY };
 ...
-<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>size_t size <span style="color:#f92672">=</span> <span style="color:#ae81ff">100000000</span>;
-std<span style="color:#f92672">::</span><span style="color:#66d9ef">uint64_t</span> value <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style=color:#66d9ef>const</span> std<span style=color:#f92672>::</span>size_t size <span style=color:#f92672>=</span> <span style=color:#ae81ff>100000000</span>;
+std<span style=color:#f92672>::</span><span style=color:#66d9ef>uint64_t</span> value <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
 
-std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>Color1<span style="color:#f92672">&gt;</span> color1_list;
-  { StopWatch <span style="color:#a6e22e">sw</span>(<span style="color:#e6db74">&#34;std::uint32_t enum, acquire memory: &#34;</span>); color1_list <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>Color1<span style="color:#f92672">&gt;</span>(size, Color1<span style="color:#f92672">::</span>BLUE); }
-  { StopWatch <span style="color:#a6e22e">sw</span>(<span style="color:#e6db74">&#34;std::uint32_t enum, execution time: &#34;</span>); <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> entry : color1_list) { value <span style="color:#f92672">=</span> value <span style="color:#f92672">+</span> entry; } }
-std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;result: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> value <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span>Color1<span style=color:#f92672>&gt;</span> color1_list;
+  { StopWatch <span style=color:#a6e22e>sw</span>(<span style=color:#e6db74>&#34;std::uint32_t enum, acquire memory: &#34;</span>); color1_list <span style=color:#f92672>=</span> std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span>Color1<span style=color:#f92672>&gt;</span>(size, Color1<span style=color:#f92672>::</span>BLUE); }
+  { StopWatch <span style=color:#a6e22e>sw</span>(<span style=color:#e6db74>&#34;std::uint32_t enum, execution time: &#34;</span>); <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>auto</span> entry : color1_list) { value <span style=color:#f92672>=</span> value <span style=color:#f92672>+</span> entry; } }
+std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;result: &#34;</span> <span style=color:#f92672>&lt;&lt;</span> value <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>;
 
-value <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>Color2<span style="color:#f92672">&gt;</span> color2_list;
-  { StopWatch <span style="color:#a6e22e">sw</span>(<span style="color:#e6db74">&#34;std::uint8_t enum, acquire memory: &#34;</span>); color2_list <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span>Color2<span style="color:#f92672">&gt;</span>(size, Color2<span style="color:#f92672">::</span>GREY); } 
-  { StopWatch <span style="color:#a6e22e">sw</span>(<span style="color:#e6db74">&#34;std::uint8_t enum, execution time: &#34;</span>); <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> entry : color2_list){ value <span style="color:#f92672">=</span> value <span style="color:#f92672">+</span> entry; } }
-std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;result: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> value <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+value <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span>Color2<span style=color:#f92672>&gt;</span> color2_list;
+  { StopWatch <span style=color:#a6e22e>sw</span>(<span style=color:#e6db74>&#34;std::uint8_t enum, acquire memory: &#34;</span>); color2_list <span style=color:#f92672>=</span> std<span style=color:#f92672>::</span>vector<span style=color:#f92672>&lt;</span>Color2<span style=color:#f92672>&gt;</span>(size, Color2<span style=color:#f92672>::</span>GREY); } 
+  { StopWatch <span style=color:#a6e22e>sw</span>(<span style=color:#e6db74>&#34;std::uint8_t enum, execution time: &#34;</span>); <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>auto</span> entry : color2_list){ value <span style=color:#f92672>=</span> value <span style=color:#f92672>+</span> entry; } }
+std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;result: &#34;</span> <span style=color:#f92672>&lt;&lt;</span> value <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>;
 </code></pre></div><pre><code>std::uint32_t enum, acquire memory: 102 [ms]
 std::uint32_t enum, execution time: 20 [ms]
 result: 200000000
 std::uint8_t enum, acquire memory: 21 [ms]
 std::uint8_t enum, execution time: 12 [ms]
-result: 200000000</code></pre>
-</div>
-</li>
-</ul>
-
-<!-- <span style="color:rgba(0, 0, 0, 0)">-</span>
-
-<footer><span class="alignright">April 2021 Vahid Dzanic</span></footer> -->
-
- </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide5" class="bg-white aligntop">
-        <span class="background" style="background-image:url('images/microoptimization.png')"></span>
-        <span class="background frame"></span>
-        <div class="wrap size-70">
-
-
-
-<h1 id="big-things-often-have-small-beginnings"><em>Big things often have small beginnings</em></h1>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<!-- <footer><span class="alignright">April 2021 Vahid Dzanic</span></footer> -->
-
- </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide6" class="bg-black aligncenter">
-        <span class="background" style="background-image:url('images/20210225_102111.jpg')"></span>
-        <div class="wrap fadeInUp size-70">
-
-
-
-<h1 id="what-if">what if</h1>
-
-<p class="text-intro">there is a framework which could do this the right way?</p>
-
- </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide7">
-        <div class="wrap">
-
-
-
-<h2 id="exen-1"><strong>EXEN</strong></h2>
-
-<ul class="flexblock gallery">
-<li><a href="#slide=8" title="How to Install">
-  <figure>
-    <img alt="Thumbnail How to Install" src="images/install2.png">
-    <figcaption>
-      <h2>How to Install</h2>
-    </figcaption>
-  </figure>
-</a>
-</li>
-<li><a href="#slide=10" title="How to Use">
-  <figure>
-    <img alt="Thumbnail How to Use" src="images/How2Use2.png">
-    <figcaption>
-      <h2>How to Use</h2>
-    </figcaption>
-  </figure>
-</a>
-</li>
-<li><a href="#slide=12" title="Under the hood">
-  <figure>
-    <img alt="Thumbnail Under the hood" src="images/UnderTheHood3.png">
-    <figcaption>
-      <h2>Under the hood</h2>
-    </figcaption>
-  </figure>
-</a>
-</li>
-</ul>
-
- </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide8">
-        <div class="wrap size-60">
-
-
-
-<h3 id="how-to-install">How to install</h3>
-
-<p class="text-intro">Clone from here: <a href="https://github.com/vahid-dzanic/exen">https://github.com/vahid-dzanic/exen</a>
-<!-- : .flexblock -->
-<span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<ul>
-<li><div>
-  <h6>
-    install build dependencies
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">apt-get install --yes cmake build-essential</code></pre></div>
-</div>
-</li>
-
-<li><div>
-  <h6>
-    clone repository
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git clone https://github.com/vahid-dzanic/exen.git</code></pre></div>
-</div>
-</li>
-
-<li><div>
-  <h6>
-    build project
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir -p exen/build
+result: 200000000</code></pre></div></li></ul></div></section><section id=slide5 class="bg-white aligntop"><span class=background style=background-image:url(images/microoptimization.png)></span><span class="background frame"></span><div class="wrap size-70"><h1 id=big-things-often-have-small-beginnings><em>Big things often have small beginnings</em></h1><p><span style=color:transparent>-</span></p><p><span style=color:transparent>-</span></p><p><span style=color:transparent>-</span></p><p><span style=color:transparent>-</span></p><p><span style=color:transparent>-</span></p><p><span style=color:transparent>-</span></p><p><span style=color:transparent>-</span></p><p><span style=color:transparent>-</span></p><p><span style=color:transparent>-</span></p><p><span style=color:transparent>-</span></p><p><span style=color:transparent>-</span></p><p><span style=color:transparent>-</span></p><p><span style=color:transparent>-</span></p><p><span style=color:transparent>-</span></p></div></section><section id=slide6 class="bg-black aligncenter"><span class=background style=background-image:url(images/20210225_102111.jpg)></span><div class="wrap fadeInUp size-70"><h1 id=what-if>what if</h1><p class=text-intro>there is a framework which could do this the right way?</p></div></section><section id=slide7><div class=wrap><h2 id=exen-1><strong>EXEN</strong></h2><ul class="flexblock gallery"><li><a href="#slide=8" title="How to Install"><figure><img alt="Thumbnail How to Install" src=images/install2.png><figcaption><h2>How to Install</h2></figcaption></figure></a></li><li><a href="#slide=10" title="How to Use"><figure><img alt="Thumbnail How to Use" src=images/How2Use2.png><figcaption><h2>How to Use</h2></figcaption></figure></a></li><li><a href="#slide=12" title="Under the hood"><figure><img alt="Thumbnail Under the hood" src=images/UnderTheHood3.png><figcaption><h2>Under the hood</h2></figcaption></figure></a></li></ul></div></section><section id=slide8><div class="wrap size-60"><h3 id=how-to-install>How to install</h3><p class=text-intro>Clone from here: <a href=https://github.com/vahid-dzanic/exen>https://github.com/vahid-dzanic/exen</a>
+<span style=color:transparent>-</span></p><ul><li><div><h6>install build dependencies</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>apt-get install --yes cmake build-essential</code></pre></div></div></li><li><div><h6>clone repository</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>git clone https://github.com/vahid-dzanic/exen.git</code></pre></div></div></li><li><div><h6>build project</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>mkdir -p exen/build
 cd exen/build
-cmake .. -DCMAKE_BUILD_TYPE<span style="color:#f92672">=</span>Release -DENABLE_TESTING<span style="color:#f92672">=</span>OFF
-make -j<span style="color:#66d9ef">$(</span>nproc<span style="color:#66d9ef">)</span></code></pre></div>
-</div>
-</li>
-
-<li><div>
-  <h6>
-    install
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo make install</code></pre></div>
-</div>
-</li>
-
-<li><div>
-  <h6>
-    verify by building example project
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir -p ../example/build
+cmake .. -DCMAKE_BUILD_TYPE<span style=color:#f92672>=</span>Release -DENABLE_TESTING<span style=color:#f92672>=</span>OFF
+make -j<span style=color:#66d9ef>$(</span>nproc<span style=color:#66d9ef>)</span></code></pre></div></div></li><li><div><h6>install</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo make install</code></pre></div></div></li><li><div><h6>verify by building example project</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>mkdir -p ../example/build
 cd ../example/build
 cmake ..
-make -j<span style="color:#66d9ef">$(</span>nproc<span style="color:#66d9ef">)</span></code></pre></div>
-</div>
-</li>
-
-<li><div>
-  <h6>
-    verify by executing example project
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./heroes</code></pre></div>
-</div>
-</li>
-</ul>
-
- </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide9">
-        <div class="wrap">
-
-
-
-<h2 id="exen-2"><strong>EXEN</strong></h2>
-
-<ul class="flexblock gallery">
-<li><a href="#slide=8" title="How to Install">
-  <figure>
-    <img alt="Thumbnail How to Install" src="images/install2.png">
-    <figcaption>
-      <h2>How to Install</h2>
-    </figcaption>
-  </figure>
-</a>
-</li>
-<li><a href="#slide=10" title="How to Use">
-  <figure>
-    <img alt="Thumbnail How to Use" src="images/How2Use2.png">
-    <figcaption>
-      <h2>How to Use</h2>
-    </figcaption>
-  </figure>
-</a>
-</li>
-<li><a href="#slide=12" title="Under the hood">
-  <figure>
-    <img alt="Thumbnail Under the hood" src="images/UnderTheHood3.png">
-    <figcaption>
-      <h2>Under the hood</h2>
-    </figcaption>
-  </figure>
-</a>
-</li>
-</ul>
-
- </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide10">
-        <div class="wrap">
-
-
-
-<h3 id="how-to-use">How to use</h3>
-
-<ul class="flexblock">
-<li><div>
-  <h6>
-    Create the enumeration
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">__EXEN_ENUM_ENTRY(Switzerland)
+make -j<span style=color:#66d9ef>$(</span>nproc<span style=color:#66d9ef>)</span></code></pre></div></div></li><li><div><h6>verify by executing example project</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>./heroes</code></pre></div></div></li></ul></div></section><section id=slide9><div class=wrap><h2 id=exen-2><strong>EXEN</strong></h2><ul class="flexblock gallery"><li><a href="#slide=8" title="How to Install"><figure><img alt="Thumbnail How to Install" src=images/install2.png><figcaption><h2>How to Install</h2></figcaption></figure></a></li><li><a href="#slide=10" title="How to Use"><figure><img alt="Thumbnail How to Use" src=images/How2Use2.png><figcaption><h2>How to Use</h2></figcaption></figure></a></li><li><a href="#slide=12" title="Under the hood"><figure><img alt="Thumbnail Under the hood" src=images/UnderTheHood3.png><figcaption><h2>Under the hood</h2></figcaption></figure></a></li></ul></div></section><section id=slide10><div class=wrap><h3 id=how-to-use>How to use</h3><ul class=flexblock><li><div><h6>Create the enumeration</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp>__EXEN_ENUM_ENTRY(Switzerland)
 __EXEN_ENUM_ENTRY(Bosnia_and_Herzegovina)
 __EXEN_ENUM_ENTRY(Spain)
-</code></pre></div>
-<p>Create a file called <code>Europe.enum</code> with the content</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#960050;background-color:#1e0010">#</span>pragma once
-<span style="color:#960050;background-color:#1e0010">#</span>define __EXEN_ENUM_NAME Europe
-<span style="color:#960050;background-color:#1e0010">#</span>include <span style="color:#e6db74">&#34;exen/exen.h&#34;</span></code></pre></div>
-<p>Create a file called <code>Europe.h</code> with the content</p>
+</code></pre></div><p>Create a file called <code>Europe.enum</code> with the content</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#960050;background-color:#1e0010>#</span>pragma once
+<span style=color:#960050;background-color:#1e0010>#</span>define __EXEN_ENUM_NAME Europe
+<span style=color:#960050;background-color:#1e0010>#</span>include <span style=color:#e6db74>&#34;exen/exen.h&#34;</span></code></pre></div><p>Create a file called <code>Europe.h</code> with the content</p></div></li><li><div><h6>Adapt build system</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cmake data-lang=cmake>find_package(<span style=color:#e6db74>exen</span> <span style=color:#e6db74>REQUIRED</span>)<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span>target_include_directories(<span style=color:#f92672>${</span>PROJECT_NAME<span style=color:#f92672>}</span>
+  <span style=color:#e6db74>PRIVATE</span>
+    <span style=color:#f92672>${</span>PROJECT_SOURCE_DIR<span style=color:#f92672>}</span><span style=color:#e6db74>/path2enum_dir</span>)<span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010>
+</span><span style=color:#960050;background-color:#1e0010></span>target_link_libraries(<span style=color:#f92672>${</span>PROJECT_NAME<span style=color:#f92672>}</span>
+  <span style=color:#e6db74>PRIVATE</span>
+    <span style=color:#e6db74>vdc::exen</span>)</code></pre></div><p>Adapt your <code>CMakeLists.txt</code></p></div></li><li><div><h6>Use it</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-D data-lang=D><span style=color:#960050;background-color:#1e0010>#</span>include <span style=color:#e6db74>&#34;Europe.h&#34;</span>
+<span style=color:#960050;background-color:#1e0010>#</span>include <span style=color:#f92672>&lt;</span>iostream<span style=color:#f92672>&gt;</span>
 
-</div>
-</li>
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>()</span>
+<span style=color:#f92672>{</span>
+  <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>auto</span> entry <span style=color:#f92672>:</span> Europe<span style=color:#f92672>::</span>array<span style=color:#f92672>())</span>
+  <span style=color:#f92672>{</span>
+    std<span style=color:#f92672>::</span>cout <span style=color:#f92672>&lt;&lt;</span> entry <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;\n&#34;</span><span style=color:#f92672>;</span>
+  <span style=color:#f92672>}</span>
 
-<li><div>
-  <h6>
-    Adapt build system
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake">find_package(<span style="color:#e6db74">exen</span> <span style="color:#e6db74">REQUIRED</span>)<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>target_include_directories(<span style="color:#f92672">${</span>PROJECT_NAME<span style="color:#f92672">}</span>
-  <span style="color:#e6db74">PRIVATE</span>
-    <span style="color:#f92672">${</span>PROJECT_SOURCE_DIR<span style="color:#f92672">}</span><span style="color:#e6db74">/path2enum_dir</span>)<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>target_link_libraries(<span style="color:#f92672">${</span>PROJECT_NAME<span style="color:#f92672">}</span>
-  <span style="color:#e6db74">PRIVATE</span>
-    <span style="color:#e6db74">vdc::exen</span>)</code></pre></div>
-<p>Adapt your <code>CMakeLists.txt</code></p>
-
-</div>
-</li>
-
-<li><div>
-  <h6>
-    Use it
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-D" data-lang="D"><span style="color:#960050;background-color:#1e0010">#</span>include <span style="color:#e6db74">&#34;Europe.h&#34;</span>
-<span style="color:#960050;background-color:#1e0010">#</span>include <span style="color:#f92672">&lt;</span>iostream<span style="color:#f92672">&gt;</span>
-
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">()</span>
-<span style="color:#f92672">{</span>
-  <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">auto</span> entry <span style="color:#f92672">:</span> Europe<span style="color:#f92672">::</span>array<span style="color:#f92672">())</span>
-  <span style="color:#f92672">{</span>
-    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> entry <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">;</span>
-  <span style="color:#f92672">}</span>
-
-  std:<span style="color:#f92672">:</span>cout
-    <span style="color:#f92672">&lt;&lt;</span> sizeof<span style="color:#f92672">(</span>Europe<span style="color:#f92672">::</span>Switzerland<span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span>
-    <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;bit \n&#34;</span><span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div>
-<p>-</p>
-<pre><code>Switzerland
+  std:<span style=color:#f92672>:</span>cout
+    <span style=color:#f92672>&lt;&lt;</span> sizeof<span style=color:#f92672>(</span>Europe<span style=color:#f92672>::</span>Switzerland<span style=color:#f92672>)</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>8</span>
+    <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34;bit \n&#34;</span><span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>-</p><pre><code>Switzerland
 Bosnia_and_Herzegovina
 Spain
-8bit</code></pre>
-</div>
-</li>
-</ul>
-
- </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide11">
-        <div class="wrap">
-
-
-
-<h2 id="exen-3"><strong>EXEN</strong></h2>
-
-<ul class="flexblock gallery">
-<li><a href="#slide=8" title="How to Install">
-  <figure>
-    <img alt="Thumbnail How to Install" src="images/install2.png">
-    <figcaption>
-      <h2>How to Install</h2>
-    </figcaption>
-  </figure>
-</a>
-</li>
-<li><a href="#slide=10" title="How to Use">
-  <figure>
-    <img alt="Thumbnail How to Use" src="images/How2Use2.png">
-    <figcaption>
-      <h2>How to Use</h2>
-    </figcaption>
-  </figure>
-</a>
-</li>
-<li><a href="#slide=12" title="Under the hood">
-  <figure>
-    <img alt="Thumbnail Under the hood" src="images/UnderTheHood3.png">
-    <figcaption>
-      <h2>Under the hood</h2>
-    </figcaption>
-  </figure>
-</a>
-</li>
-</ul>
-
- </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide12">
-        <div class="wrap">
-
-
-
-
-          <div class="grid vertical-align">
-            <div class="column">
-
-<h2 id="specs">Specs</h2>
-
-</div>
-            <div class="column">
-
-<h4 id="exen-is-basically-a-single-header-file">EXEN is basically a single header-file</h4>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<h4 id="preprocessor-macros-are-excessively-used">Preprocessor macros are excessively used</h4>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<h4 id="therefore-there-is-no-generator-or-similar-needed">Therefore there is no generator or similar needed</h4>
-
-<p><span style="color:rgba(0, 0, 0, 0)">-</span></p>
-
-<h4 id="it-requires-only-a-c-11-capable-compiler">It requires only a C++11 capable compiler</h4>
-
-</div>
-          </div> </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide13">
-        <div>
-
-<div class="wrap">
-  <h2>Recap compiling</h2>
-  <h4>from c++ source to an executable</h4>
-  <ul class="flexblock steps">
-   <li>
-      <span>
-      <svg class="fa-file-code-o">
-        <use xlink:href="#fa-file-code-o"></use>
-      </svg>
-      </span>
-      <h2>c++ source code</h2>
-      <p>input</p>
-    </li>
-  </ul>
-  <ul class="flexblock steps">
-    <!-- li>a? Add blink = <ul class="flexblock steps blink">-->
-    <li>
-      <span>
-        <svg class="fa-file">
-          <use xlink:href="#fa-file"/>
-        </svg>
-      </span>
-      <h2>Preprocessing</h2>
-      <p>it processes include-files and macros</p>
-      <ul>
-        <li>
-          <h2>1. Substitute #define macros</h2>
-        </li>
-        <li>
-          <h2>2. Resolve #include statements</h2>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <div class="process step-2"></div>
-      <span>
-      <svg class="fa-spinner">
-        <use xlink:href="#fa-spinner"></use>
-      </svg>
-      </span>
-      <h2>Substitute template types</h2>
-      <p>It's creating a new type, where the template type is substituted with the one which was used</p>
-    </li>
-    <li>
-      <div class="process step-3"></div>
-      <span>
-      <svg class="fa-barcode">
-        <use xlink:href="#fa-barcode"></use>
-      </svg>
-      </span>
-      <h2>Compiling and Assembling</h2>
-      <p>translating into an object file containing the machine language code</p>
-    </li>
-    <li>
-      <div class="process step-4"></div>
-      <span>
-      <svg class="fa-clone">
-        <use xlink:href="#fa-clone"></use>
-      </svg>
-      </span>
-      <h2>Linking</h2>
-      <p>links the object code with the libraries and creates an executable</p>
-    </li>
-  </ul>
-  <ul class="flexblock steps">
-  <li>
-      <span>
-        <svg class="fa-cogs">
-          <use xlink:href="#fa-cogs"></use>
-        </svg>
-      </span>
-      <h2>executable</h2>
-      <p>outcome</p>
-    </li>
-  </ul>
-</div>
-
- </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide14">
-        <div class="wrap">
-
-
-
-<h2 id="key-points">Key points</h2>
-
-<ul class="flexblock">
-<li><div>
-  <h6>
-    Preprocessors include statement
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-D" data-lang="D"><span style="color:#66d9ef">enum</span> __EXEN_ENUM_NAME
-<span style="color:#f92672">{</span>
-  <span style="color:#960050;background-color:#1e0010">#</span>define <span style="color:#a6e22e">__EXEN_ENUM_ENTRY</span><span style="color:#f92672">(</span>__enum_entry<span style="color:#f92672">)</span> __enum_entry<span style="color:#f92672">,</span>
-  <span style="color:#960050;background-color:#1e0010">#</span>include <span style="color:#a6e22e">__EXEN_INCLUDE_ENUM</span><span style="color:#f92672">(</span>__EXEN_ENUM_NAME<span style="color:#f92672">)</span>
-  <span style="color:#960050;background-color:#1e0010">#</span>undef __EXEN_ENUM_ENTRY
-<span style="color:#f92672">};</span>
-</code></pre></div>
-<p>It&rsquo;s possible to include a file at any position of the code</p>
-
-</div>
-</li>
-
-<li><div>
-  <h6>
-    Preprocessors include-filename as 'define'-statement
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-D" data-lang="D"><span style="color:#f92672">...</span>
-
-  <span style="color:#960050;background-color:#1e0010">#</span>include <span style="color:#a6e22e">__EXEN_INCLUDE_ENUM</span><span style="color:#f92672">(</span>__EXEN_ENUM_NAME<span style="color:#f92672">)</span>
-
-<span style="color:#f92672">...</span>
-</code></pre></div>
-<p>The preprocessing-step can be divided into 2 steps, first the <code>define</code>-macros will be substituted second the <code>include</code> statements will be resolved.</p>
-
-<p>This allows the filename to be set as a <code>define</code>-macro.</p>
-
-</div>
-</li>
-</ul>
-
- </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide15">
-        <div class="wrap">
-
-
-
-<h2 id="more-key-points">More key points</h2>
-
-<ul class="flexblock">
-<li><div>
-  <h6>
-    How to get the entry-count without polluting the enum
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-D" data-lang="D">namespace detail <span style="color:#f92672">{</span>
-<span style="color:#960050;background-color:#1e0010">#</span>define __EXEN_ENUM_P <span style="color:#a6e22e">__EXEN_ENUM_P_DECL</span><span style="color:#f92672">(</span>__EXEN_ENUM_NAME<span style="color:#f92672">)</span>
-<span style="color:#66d9ef">enum</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">__EXEN_ENUM_P</span>
-<span style="color:#f92672">{</span>
-  <span style="color:#960050;background-color:#1e0010">#</span>define <span style="color:#a6e22e">__EXEN_ENUM_ENTRY</span><span style="color:#f92672">(</span>__enum_entry<span style="color:#f92672">)</span> __enum_entry<span style="color:#f92672">,</span>
-  <span style="color:#960050;background-color:#1e0010">#</span>include <span style="color:#a6e22e">__EXEN_INCLUDE_ENUM</span><span style="color:#f92672">(</span>__EXEN_ENUM_NAME<span style="color:#f92672">)</span>
-  <span style="color:#960050;background-color:#1e0010">#</span>undef __EXEN_ENUM_ENTRY
-  COUNT <span style="color:#75715e">// &lt;--
-</span><span style="color:#75715e"></span><span style="color:#f92672">};</span>
-<span style="color:#f92672">}</span> <span style="color:#75715e">// namespace detail
-</span></code></pre></div>
-<p>There are two enumerations, one is hidden in a namespace called <code>detail</code> which contains the polluting last entry <code>COUNT</code>.</p>
-
-</div>
-</li>
-</ul>
-
- </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide16" class="bg-black">
-        <span class="background" style="background-image:url('images/magic.jpg')"></span>
-        <div class="wrap fadeInUp size-80">
-
-
-
-<h2 id="magic-key-points">Magic key points</h2>
-
-<ul class="flexblock">
-<li><div>
-  <h6>
-    How to get for the enumeration the right underlying type
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">constexpr</span> std<span style="color:#f92672">::</span><span style="color:#66d9ef">uint64_t</span> count() { <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span><span style="color:#66d9ef">uint64_t</span><span style="color:#f92672">&gt;</span>(detail<span style="color:#f92672">::</span>__EXEN_ENUM_P<span style="color:#f92672">::</span>COUNT); }
-
-<span style="color:#66d9ef">using</span> optimal_unsigned_integer_size_type <span style="color:#f92672">=</span>
-  std<span style="color:#f92672">::</span>conditional<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>numeric_limits<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span><span style="color:#66d9ef">uint8_t</span><span style="color:#f92672">&gt;::</span>max() <span style="color:#f92672">&gt;=</span> count(),
-    std<span style="color:#f92672">::</span><span style="color:#66d9ef">uint8_t</span>,
-    std<span style="color:#f92672">::</span>conditional<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>numeric_limits<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span><span style="color:#66d9ef">uint16_t</span><span style="color:#f92672">&gt;::</span>max() <span style="color:#f92672">&gt;=</span> count(),
-    std<span style="color:#f92672">::</span><span style="color:#66d9ef">uint16_t</span>,
-      std<span style="color:#f92672">::</span>conditional<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>numeric_limits<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span><span style="color:#66d9ef">uint32_t</span><span style="color:#f92672">&gt;::</span>max() <span style="color:#f92672">&gt;=</span> count(),
-      std<span style="color:#f92672">::</span><span style="color:#66d9ef">uint32_t</span>,
-      std<span style="color:#f92672">::</span><span style="color:#66d9ef">uint64_t</span>
-      <span style="color:#f92672">&gt;::</span>type
-    <span style="color:#f92672">&gt;::</span>type
-  <span style="color:#f92672">&gt;::</span>type;
-</code></pre></div>
-<p>With some C++ template metaprogramming MAGIC</p>
-
-</div>
-</li>
-</ul>
-
- </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide17">
-        <div class="wrap">
-
-
-
-<h2 id="even-more-key-points">Even more key points</h2>
-
-<ul class="flexblock">
-<li><div>
-  <h6>
-    To string converter
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-D" data-lang="D">namespace detail <span style="color:#f92672">{</span>
-constexpr std<span style="color:#f92672">::</span>array<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*,</span> count<span style="color:#f92672">()&gt;</span> enum_names <span style="color:#f92672">=</span>
-<span style="color:#f92672">{{</span>
-  <span style="color:#960050;background-color:#1e0010">#</span>define <span style="color:#a6e22e">__EXEN_ENUM_ENTRY</span><span style="color:#f92672">(</span>__enum_entry<span style="color:#f92672">)</span> <span style="color:#960050;background-color:#1e0010">#</span>__enum_entry<span style="color:#f92672">,</span>
-  <span style="color:#960050;background-color:#1e0010">#</span>include <span style="color:#a6e22e">__EXEN_INCLUDE_ENUM</span><span style="color:#f92672">(</span>__EXEN_ENUM_NAME<span style="color:#f92672">)</span>
-  <span style="color:#960050;background-color:#1e0010">#</span>undef __EXEN_ENUM_ENTRY
-<span style="color:#f92672">}};</span>
-<span style="color:#f92672">}</span> <span style="color:#75715e">// namespace detail
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">/** Returns the string representation of the given enumeration value. */</span>
-constexpr <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> name<span style="color:#f92672">(</span>__EXEN_ENUM_NAME value<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-  <span style="color:#66d9ef">return</span> detail<span style="color:#f92672">::</span>enum_names<span style="color:#f92672">[</span>static_cast<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>uint64_t<span style="color:#f92672">&gt;(</span>value<span style="color:#f92672">)];</span>
-<span style="color:#f92672">}</span>
-</code></pre></div>
-<p>An Array of Strings is created in the hidden <code>detail</code> namespace.
-This array contains at the position of a corresponding enum-entry the string representation of it.</p>
-
-<p>So with the function called <code>name( enum_type )</code> it&rsquo;s possible to return the string of the corresponding enumeration entry.</p>
-
-</div>
-</li>
-
-<li><div>
-  <h6>
-    Stream operator overloading
-  </h6>
-  <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-D" data-lang="D">std:<span style="color:#f92672">:</span>ostream<span style="color:#f92672">&amp;</span> operator<span style="color:#f92672">&lt;&lt;(</span>std<span style="color:#f92672">::</span>ostream<span style="color:#f92672">&amp;</span> stream<span style="color:#f92672">,</span> enum_type rhs<span style="color:#f92672">)</span>
-<span style="color:#f92672">{</span>
-  stream <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span><span style="color:#66d9ef">string</span><span style="color:#f92672">(</span>enum_type<span style="color:#f92672">::</span>name<span style="color:#f92672">(</span>rhs<span style="color:#f92672">));</span>
-  <span style="color:#66d9ef">return</span> stream<span style="color:#f92672">;</span>
-<span style="color:#f92672">}</span>
-</code></pre></div>
-<p>to top it all off.</p>
-
-<p>So with this, the enumeration-entry is automatically deduced in a stream statement and will therefore return a string instead of the number itself.</p>
-
-</div>
-</li>
-</ul>
-
- </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide18">
-        <div class="wrap">
-
-
-
-
-          <div class="grid vertical-align">
-            <div class="column">
-
-<h2 id="coming-soon">coming soon</h2>
-
-</div>
-            <div class="column">
-
-<p>Possibility to define a specific value per entry (C++17 required)</p>
-
-</div>
-          </div> </div>
-      </section>
-      
-      
-      
-
-      
-  
-      <section id="slide19" class="bg-black aligncenter">
-        <span class="background" style="background-image:url('images/20210421_175253.jpg')"></span>
-        <div class="wrap fadeInUp size-70">
-
-
-
-<h2 id="enhance-your-enumerations"><strong>enhance your enumerations</strong></h2>
- </div>
-      </section> 
-
-      </article>
-  </main>
-
-  
-  <script src="js/webslides.min.js"></script>
-<script>window.ws = new WebSlides({minWheelDelta: 40 ,scrollWait: 450 ,slideOffset: 50 ,});</script>
-<script defer src="js/svg-icons.js"></script>
-
-</body>
-
-</html>
+8bit</code></pre></div></li></ul></div></section><section id=slide11><div class=wrap><h2 id=exen-3><strong>EXEN</strong></h2><ul class="flexblock gallery"><li><a href="#slide=8" title="How to Install"><figure><img alt="Thumbnail How to Install" src=images/install2.png><figcaption><h2>How to Install</h2></figcaption></figure></a></li><li><a href="#slide=10" title="How to Use"><figure><img alt="Thumbnail How to Use" src=images/How2Use2.png><figcaption><h2>How to Use</h2></figcaption></figure></a></li><li><a href="#slide=12" title="Under the hood"><figure><img alt="Thumbnail Under the hood" src=images/UnderTheHood3.png><figcaption><h2>Under the hood</h2></figcaption></figure></a></li></ul></div></section><section id=slide12><div class=wrap><div class="grid vertical-align"><div class=column><h2 id=specs>Specs</h2></div><div class=column><h4 id=exen-is-basically-a-single-header-file>EXEN is basically a single header-file</h4><p><span style=color:transparent>-</span></p><h4 id=preprocessor-macros-are-excessively-used>Preprocessor macros are excessively used</h4><p><span style=color:transparent>-</span></p><h4 id=therefore-there-is-no-generator-or-similar-needed>Therefore there is no generator or similar needed</h4><p><span style=color:transparent>-</span></p><h4 id=it-requires-only-a-c-11-capable-compiler>It requires only a C++11 capable compiler</h4></div></div></div></section><section id=slide13><div><div class=wrap><h2>Recap compiling</h2><h4>from c++ source to an executable</h4><ul class="flexblock steps"><li><span><svg class="fa-file-code-o"><use xlink:href="#fa-file-code-o"/></svg></span><h2>c++ source code</h2><p>input</p></li></ul><ul class="flexblock steps"><li><span><svg class="fa-file"><use xlink:href="#fa-file"/></svg></span><h2>Preprocessing</h2><p>it processes include-files and macros</p><ul><li><h2>1. Substitute #define macros</h2></li><li><h2>2. Resolve #include statements</h2></li></ul></li><li><div class="process step-2"></div><span><svg class="fa-spinner"><use xlink:href="#fa-spinner"/></svg></span><h2>Substitute template types</h2><p>It's creating a new type, where the template type is substituted with the one which was used</p></li><li><div class="process step-3"></div><span><svg class="fa-barcode"><use xlink:href="#fa-barcode"/></svg></span><h2>Compiling and Assembling</h2><p>translating into an object file containing the machine language code</p></li><li><div class="process step-4"></div><span><svg class="fa-clone"><use xlink:href="#fa-clone"/></svg></span><h2>Linking</h2><p>links the object code with the libraries and creates an executable</p></li></ul><ul class="flexblock steps"><li><span><svg class="fa-cogs"><use xlink:href="#fa-cogs"/></svg></span><h2>executable</h2><p>outcome</p></li></ul></div></div></section><section id=slide14><div class=wrap><h2 id=key-points>Key points</h2><ul class=flexblock><li><div><h6>Preprocessors include statement</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-D data-lang=D><span style=color:#66d9ef>enum</span> __EXEN_ENUM_NAME
+<span style=color:#f92672>{</span>
+  <span style=color:#960050;background-color:#1e0010>#</span>define <span style=color:#a6e22e>__EXEN_ENUM_ENTRY</span><span style=color:#f92672>(</span>__enum_entry<span style=color:#f92672>)</span> __enum_entry<span style=color:#f92672>,</span>
+  <span style=color:#960050;background-color:#1e0010>#</span>include <span style=color:#a6e22e>__EXEN_INCLUDE_ENUM</span><span style=color:#f92672>(</span>__EXEN_ENUM_NAME<span style=color:#f92672>)</span>
+  <span style=color:#960050;background-color:#1e0010>#</span>undef __EXEN_ENUM_ENTRY
+<span style=color:#f92672>};</span>
+</code></pre></div><p>It&rsquo;s possible to include a file at any position of the code</p></div></li><li><div><h6>Preprocessors include-filename as 'define'-statement</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-D data-lang=D><span style=color:#f92672>...</span>
+
+  <span style=color:#960050;background-color:#1e0010>#</span>include <span style=color:#a6e22e>__EXEN_INCLUDE_ENUM</span><span style=color:#f92672>(</span>__EXEN_ENUM_NAME<span style=color:#f92672>)</span>
+
+<span style=color:#f92672>...</span>
+</code></pre></div><p>The preprocessing-step can be divided into 2 steps, first the <code>define</code>-macros will be substituted second the <code>include</code> statements will be resolved.</p><p>This allows the filename to be set as a <code>define</code>-macro.</p></div></li></ul></div></section><section id=slide15><div class=wrap><h2 id=more-key-points>More key points</h2><ul class=flexblock><li><div><h6>How to get the entry-count without polluting the enum</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-D data-lang=D>namespace detail <span style=color:#f92672>{</span>
+<span style=color:#960050;background-color:#1e0010>#</span>define __EXEN_ENUM_P <span style=color:#a6e22e>__EXEN_ENUM_P_DECL</span><span style=color:#f92672>(</span>__EXEN_ENUM_NAME<span style=color:#f92672>)</span>
+<span style=color:#66d9ef>enum</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>__EXEN_ENUM_P</span>
+<span style=color:#f92672>{</span>
+  <span style=color:#960050;background-color:#1e0010>#</span>define <span style=color:#a6e22e>__EXEN_ENUM_ENTRY</span><span style=color:#f92672>(</span>__enum_entry<span style=color:#f92672>)</span> __enum_entry<span style=color:#f92672>,</span>
+  <span style=color:#960050;background-color:#1e0010>#</span>include <span style=color:#a6e22e>__EXEN_INCLUDE_ENUM</span><span style=color:#f92672>(</span>__EXEN_ENUM_NAME<span style=color:#f92672>)</span>
+  <span style=color:#960050;background-color:#1e0010>#</span>undef __EXEN_ENUM_ENTRY
+  COUNT <span style=color:#75715e>// &lt;--
+</span><span style=color:#75715e></span><span style=color:#f92672>};</span>
+<span style=color:#f92672>}</span> <span style=color:#75715e>// namespace detail
+</span></code></pre></div><p>There are two enumerations, one is hidden in a namespace called <code>detail</code> which contains the polluting last entry <code>COUNT</code>.</p></div></li></ul></div></section><section id=slide16 class=bg-black><span class=background style=background-image:url(images/magic.jpg)></span><div class="wrap fadeInUp size-80"><h2 id=magic-key-points>Magic key points</h2><ul class=flexblock><li><div><h6>How to get for the enumeration the right underlying type</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>constexpr</span> std<span style=color:#f92672>::</span><span style=color:#66d9ef>uint64_t</span> count() { <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>static_cast</span><span style=color:#f92672>&lt;</span>std<span style=color:#f92672>::</span><span style=color:#66d9ef>uint64_t</span><span style=color:#f92672>&gt;</span>(detail<span style=color:#f92672>::</span>__EXEN_ENUM_P<span style=color:#f92672>::</span>COUNT); }
+
+<span style=color:#66d9ef>using</span> optimal_unsigned_integer_size_type <span style=color:#f92672>=</span>
+  std<span style=color:#f92672>::</span>conditional<span style=color:#f92672>&lt;</span>std<span style=color:#f92672>::</span>numeric_limits<span style=color:#f92672>&lt;</span>std<span style=color:#f92672>::</span><span style=color:#66d9ef>uint8_t</span><span style=color:#f92672>&gt;::</span>max() <span style=color:#f92672>&gt;=</span> count(),
+    std<span style=color:#f92672>::</span><span style=color:#66d9ef>uint8_t</span>,
+    std<span style=color:#f92672>::</span>conditional<span style=color:#f92672>&lt;</span>std<span style=color:#f92672>::</span>numeric_limits<span style=color:#f92672>&lt;</span>std<span style=color:#f92672>::</span><span style=color:#66d9ef>uint16_t</span><span style=color:#f92672>&gt;::</span>max() <span style=color:#f92672>&gt;=</span> count(),
+    std<span style=color:#f92672>::</span><span style=color:#66d9ef>uint16_t</span>,
+      std<span style=color:#f92672>::</span>conditional<span style=color:#f92672>&lt;</span>std<span style=color:#f92672>::</span>numeric_limits<span style=color:#f92672>&lt;</span>std<span style=color:#f92672>::</span><span style=color:#66d9ef>uint32_t</span><span style=color:#f92672>&gt;::</span>max() <span style=color:#f92672>&gt;=</span> count(),
+      std<span style=color:#f92672>::</span><span style=color:#66d9ef>uint32_t</span>,
+      std<span style=color:#f92672>::</span><span style=color:#66d9ef>uint64_t</span>
+      <span style=color:#f92672>&gt;::</span>type
+    <span style=color:#f92672>&gt;::</span>type
+  <span style=color:#f92672>&gt;::</span>type;
+</code></pre></div><p>With some C++ template metaprogramming MAGIC</p></div></li></ul></div></section><section id=slide17><div class=wrap><h2 id=even-more-key-points>Even more key points</h2><ul class=flexblock><li><div><h6>To string converter</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-D data-lang=D>namespace detail <span style=color:#f92672>{</span>
+constexpr std<span style=color:#f92672>::</span>array<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>*,</span> count<span style=color:#f92672>()&gt;</span> enum_names <span style=color:#f92672>=</span>
+<span style=color:#f92672>{{</span>
+  <span style=color:#960050;background-color:#1e0010>#</span>define <span style=color:#a6e22e>__EXEN_ENUM_ENTRY</span><span style=color:#f92672>(</span>__enum_entry<span style=color:#f92672>)</span> <span style=color:#960050;background-color:#1e0010>#</span>__enum_entry<span style=color:#f92672>,</span>
+  <span style=color:#960050;background-color:#1e0010>#</span>include <span style=color:#a6e22e>__EXEN_INCLUDE_ENUM</span><span style=color:#f92672>(</span>__EXEN_ENUM_NAME<span style=color:#f92672>)</span>
+  <span style=color:#960050;background-color:#1e0010>#</span>undef __EXEN_ENUM_ENTRY
+<span style=color:#f92672>}};</span>
+<span style=color:#f92672>}</span> <span style=color:#75715e>// namespace detail
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>/** Returns the string representation of the given enumeration value. */</span>
+constexpr <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>*</span> name<span style=color:#f92672>(</span>__EXEN_ENUM_NAME value<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+  <span style=color:#66d9ef>return</span> detail<span style=color:#f92672>::</span>enum_names<span style=color:#f92672>[</span>static_cast<span style=color:#f92672>&lt;</span>std<span style=color:#f92672>::</span>uint64_t<span style=color:#f92672>&gt;(</span>value<span style=color:#f92672>)];</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>An Array of Strings is created in the hidden <code>detail</code> namespace.
+This array contains at the position of a corresponding enum-entry the string representation of it.</p><p>So with the function called <code>name( enum_type )</code> it&rsquo;s possible to return the string of the corresponding enumeration entry.</p></div></li><li><div><h6>Stream operator overloading</h6><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-D data-lang=D>std:<span style=color:#f92672>:</span>ostream<span style=color:#f92672>&amp;</span> operator<span style=color:#f92672>&lt;&lt;(</span>std<span style=color:#f92672>::</span>ostream<span style=color:#f92672>&amp;</span> stream<span style=color:#f92672>,</span> enum_type rhs<span style=color:#f92672>)</span>
+<span style=color:#f92672>{</span>
+  stream <span style=color:#f92672>&lt;&lt;</span> std<span style=color:#f92672>::</span><span style=color:#66d9ef>string</span><span style=color:#f92672>(</span>enum_type<span style=color:#f92672>::</span>name<span style=color:#f92672>(</span>rhs<span style=color:#f92672>));</span>
+  <span style=color:#66d9ef>return</span> stream<span style=color:#f92672>;</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>to top it all off.</p><p>So with this, the enumeration-entry is automatically deduced in a stream statement and will therefore return a string instead of the number itself.</p></div></li></ul></div></section><section id=slide18><div class=wrap><div class="grid vertical-align"><div class=column><h2 id=coming-soon>coming soon</h2></div><div class=column><h4 id=possibility-to-define-a-specific-value-per-entry-requires-c-17>Possibility to define a specific value per entry (requires C++17)</h4></div></div></div></section><section id=slide19 class="bg-black aligncenter"><span class=background style=background-image:url(images/20210421_175253.jpg)></span><div class="wrap fadeInUp size-70"><h2 id=enhance-your-enumerations><strong>enhance your enumerations</strong></h2></div></section></article></main><script src=js/webslides.min.js></script><script>window.ws=new WebSlides({minWheelDelta:40,scrollWait:450,slideOffset:50})</script><script defer src=js/svg-icons.js></script></body></html>
