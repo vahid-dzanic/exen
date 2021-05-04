@@ -58,18 +58,18 @@ jobs:
            make -j${nproc}
            ./heroes
   
-  deploy:
+#   deploy:
 
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: show checkout path
-      run: |
-           echo $GITHUB_WORKSPACE
-    - name: deploy
-      uses: peaceiris/actions-github-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: main
-        publish_dir: $GITHUB_WORKSPACE/docs
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: show checkout path
+#       run: |
+#            echo $GITHUB_WORKSPACE
+#     - name: deploy
+#       uses: peaceiris/actions-github-pages@v3
+#       with:
+#         github_token: ${{ secrets.GITHUB_TOKEN }}
+#         publish_branch: main
+#         publish_dir: $GITHUB_WORKSPACE/docs
