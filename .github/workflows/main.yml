@@ -57,3 +57,14 @@ jobs:
            cmake ..
            make -j${nproc}
            ./heroes
+  
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: deploy
+      uses: peaceiris/actions-github-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: $GITHUB_WORKSPACE/docs
