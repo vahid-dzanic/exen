@@ -157,7 +157,7 @@ constexpr auto enum_names = std::array {
   #undef __EXEN_ENUM_ENTRY_2
 };
 template<typename _Tp>
-constexpr inline std::size_t index_of(_Tp array, const Car::Color::Color val) {
+constexpr inline std::size_t index_of(_Tp array, const __EXEN_ENUM_NAME val) {
   for(std::size_t idx = 0; idx < array.size(); ++idx) {
     if (array[idx] == val) {
       return idx;

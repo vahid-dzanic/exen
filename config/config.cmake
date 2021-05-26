@@ -22,4 +22,8 @@ if(NOT TARGET @ALIAS_TARGET_NAME@::@PROJECT_NAME@)
       DEPLOYMENT_PATH                   "${@PROJECT_NAME@_PATH}/.."
       VERSION                           "@PROJECT_VERSION@")
 
+  target_compile_features(@ALIAS_TARGET_NAME@::@PROJECT_NAME@
+    INTERFACE
+      cxx_std_17)
+
 endif()
