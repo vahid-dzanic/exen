@@ -14,18 +14,18 @@ int main(int, char**)
 
   auto green = Car::Color::GREEN;
 
-  std::string str = Car::Color::name(green);
+  const auto str = Car::Color::name(green);
   std::cout << str << "\n";
   std::cout << Car::Color::first() << "\n";
   std::cout << Car::Color::last() << "\n";
   std::cout << Car::Color::count() << "\n";
 
-  constexpr bool COLOR_IS_UINT8 =
+  constexpr bool COLOR_IS_UINT16 =
     std::is_same<std::underlying_type_t<decltype(green)>,
-                 std::uint8_t>::value;
+                 std::uint16_t>::value;
 
-  std::cout << "The underlying Type of color enum is std::uint8_t = "
-            << std::boolalpha << COLOR_IS_UINT8 << "\n";
+  std::cout << "The underlying Type of color enum is std::uint16_t = "
+            << std::boolalpha << COLOR_IS_UINT16 << "\n";
 
   return 0;
 }

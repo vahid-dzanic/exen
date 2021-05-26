@@ -4,7 +4,7 @@
 
 cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 
-project(exen VERSION 1.0.0 LANGUAGES CXX)
+project(exen VERSION 2.0.0 LANGUAGES CXX)
 
 option(ENABLE_TESTING "Build all tests too, ON by default" ON)
 
@@ -29,7 +29,7 @@ target_include_directories(${PROJECT_NAME}
 
 target_compile_features(${PROJECT_NAME}
   INTERFACE
-    cxx_std_11)
+    cxx_std_17)
 
 install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}-config
   LIBRARY DESTINATION lib

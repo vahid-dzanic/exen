@@ -7,6 +7,7 @@
     - [Create Enumeration with EXEN](#create-enumeration-with-exen)
       - [For CMake projects](#for-cmake-projects)
     - [Use Created Enumeration](#use-created-enumeration)
+  - [Types and Functions provided with EXEN enumerations](#types-and-functions-provided-with-exen-enumerations)
   - [Requires](#requires)
   - [Design Description](#design-description)
     - [The preprocessed ```Color.h```-file](#the-preprocessed-colorh-file)
@@ -21,7 +22,12 @@ EXEN Exetended Enumerations is a header-only library, providing the possibility 
 Those enhancements are reflective information for example the last enumeration entry or the count of entries and so on. Enumerations created with EXEN also providing a string-converter for every enumeration-entry at compile-time (```constexpr```).
 
 With the EXEN framework created enumerations the enumeration-type is optimized in memory consumption and therefore in less cache misses.
+
+<b>EXEN Version 1.0.0:</b>
 In case you have less than 256 enumeration entries it will deduct right size at compile time and choose for example in this case std::uint8_t. In case if there are more than 256 entries but less than 65536, it will deduct ```std::unit16_t```, and so on for the ```std::unit32_t``` and ```std::unit64_t```.
+
+<b>EXEN Version 2.0.0:</b>
+In the version 2.0.0 it's possible to define a value for each entry, with this the data type is deduced with the maximum value insted of using the number of entries.
 
 One more thing you get, it's possible to have the enumeration entries of a single enumeration in multiple files distributed. This enables for example to have at compile time a unique number for your components but not hardcoding them into the code upfront.
 
@@ -54,9 +60,13 @@ Create a file called Color.enum with following content:
 ```cpp
 //Color.enum
 __EXEN_ENUM_ENTRY(RED)
-__EXEN_ENUM_ENTRY(GREEN)
+__EXEN_ENUM_ENTRY(GREEN, 7)
 __EXEN_ENUM_ENTRY(BLUE)
 ```
+
+Create an entry with the ```__EXEN_ENUM_ENTRY``` declaration.
+
+<b>EXEN Version 2.0.0:</b> If an entry has to have a special value defined, just add the value separated from the entry-name with comma to the ```__EXEN_ENUM_ENTRY``` declaration (e.g ```__EXEN_ENUM_ENTRY(GREEN, 7)```).
 
 Make sure that the Color.enum-file directory is in your buildsystems include-path.
 
@@ -148,8 +158,43 @@ BLUE
 3
 The underlying Type of color enum is std::uint8_t = true
 ```
+## Types and Functions provided with EXEN enumerations
+The enumeration-declaration itself depending on the defined __EXEN_ENUM_NAME name and optionally the defined __EXEN_NAMESPACE name (e.g. ```[enumeration type] --> e.g. Car::Color::Color```)
+```c++
+// Returning a predefined std::array with the enumeration entries
+constexpr std::array<[enumeration type], [entry count]> array()
+
+// Returning the first entry of the enumeration
+constexpr [enumeration type] first()
+
+// Returning the last entry of the enumeration
+constexpr [enumeration type] last()
+
+// Returning the enumeration entry with the smallest value
+// since EXEN Version 2.0.0
+constexpr [enumeration type] min() 
+
+// Returning the enumeration entry with the biggest value
+// since EXEN Version 2.0.0
+constexpr [enumeration type] max()
+
+// Returning enumeration entry count
+constexpr std::uint64_t count()
+
+// Returning the enumeration-type name with namespace as string
+// since EXEN Version 2.0.0
+constexpr std::string_view type_name()
+
+// Returning the string representation of the given enumeration entry
+constexpr std::string_view name([enumeration type] entry)
+```
+
 ## Requires
+<b>EXEN Version 1.0.0:</b>
 C++11 capable compiler
+
+<b>EXEN Version 2.0.0:</b>
+C++17 capable compiler
 
 ## Design Description
 The library consists of one header file ```exen.h```. In order to use the header-file some preconditions has to be fulfilled.
@@ -176,42 +221,48 @@ In case your using ```gcc``` compiler, with adding the compile options ```-E``` 
 This is quite handy if you want to debug or just to see how the enumerator is defined.
 
 #### ```Color.h```-file (without showing detail namespace)
-```cpp
+```c++
 ...
 
 namespace Car {
 namespace Color {
 
-constexpr std::uint64_t count() { return static_cast<std::uint64_t>(detail::private_Color::COUNT); }
-
 enum Color : detail::optimal_unsigned_integer_size_type
 {
-RED,
-GREEN,
-BLUE,
+RED = 0,
+GREEN = 1,
+BLUE = 55000,
+ORANGE,
 };
-constexpr std::array<Color, count()> array() {
-  return std::array<Color, count()>{{
-Color::RED,
-Color::GREEN,
-Color::BLUE,
-  }};
+
+constexpr auto array() {
+  return detail::private_array;
 }
 constexpr Color first() {
-  return static_cast<Color>(0);
+  return array().front();
 }
 constexpr Color last() {
-  return static_cast<Color>(count() - 1);
+  return array().back();
+}
+constexpr Color min() {
+  return static_cast<Color>(detail::min);
+}
+constexpr Color max() {
+  return static_cast<Color>(detail::max);
+}
+constexpr std::uint64_t count() { return array().size(); }
+constexpr std::string_view type_name() {
+  return std::string_view("Car::Color");
 }
 
-constexpr const char* name(Color value) {
-  return detail::enum_names[static_cast<std::uint64_t>(value)];
+constexpr std::string_view name(Color entry) {
+  return detail::enum_names[detail::index_of(array(), entry)];
 }
 }
 }
 std::ostream& operator<<(std::ostream& stream, Car::Color::Color rhs)
 {
-  stream << std::string(Car::Color::name(rhs));
+  stream << Car::Color::name(rhs);
   return stream;
 }
 
@@ -219,7 +270,7 @@ std::ostream& operator<<(std::ostream& stream, Car::Color::Color rhs)
 ```
 
 #### Full ```Color.h```-file (with detail namespace)
-```cpp
+```c++
 ...
 
 namespace Car {
@@ -227,20 +278,27 @@ namespace Color {
 namespace detail {
 enum class private_Color
 {
-RED,
-GREEN,
-BLUE,
-  COUNT
+RED = 0,
+GREEN = 1,
+BLUE = 55000,
+ORANGE,
 };
-}
-constexpr std::uint64_t count() { return static_cast<std::uint64_t>(detail::private_Color::COUNT); }
-namespace detail {
-static_assert(count() != 0,
-              "There are no enumerator entries in the \"Color.enum\" file");
+constexpr auto min = std::min({
+private_Color::RED,
+private_Color::GREEN,
+private_Color::BLUE,
+private_Color::ORANGE,
+  });
+constexpr auto max = std::max({
+private_Color::RED,
+private_Color::GREEN,
+private_Color::BLUE,
+private_Color::ORANGE,
+  });
 using optimal_unsigned_integer_size_type =
-  std::conditional<std::numeric_limits<std::uint8_t>::max() >= count(), std::uint8_t,
-    std::conditional<std::numeric_limits<std::uint16_t>::max() >= count(), std::uint16_t,
-      std::conditional<std::numeric_limits<std::uint32_t>::max() >= count(), std::uint32_t,
+  std::conditional<std::numeric_limits<std::uint8_t>::max() >= static_cast<std::uint64_t>(max), std::uint8_t,
+    std::conditional<std::numeric_limits<std::uint16_t>::max() >= static_cast<std::uint64_t>(max), std::uint16_t,
+      std::conditional<std::numeric_limits<std::uint32_t>::max() >= static_cast<std::uint64_t>(max), std::uint32_t,
         std::uint64_t
       >::type
     >::type
@@ -248,39 +306,78 @@ using optimal_unsigned_integer_size_type =
 }
 enum Color : detail::optimal_unsigned_integer_size_type
 {
-RED,
-GREEN,
-BLUE,
+RED = 0,
+GREEN = 1,
+BLUE = 55000,
+ORANGE,
 };
-constexpr std::array<Color, count()> array() {
-  return std::array<Color, count()>{{
+namespace detail {
+constexpr std::array private_array{
 Color::RED,
 Color::GREEN,
 Color::BLUE,
-  }};
+Color::ORANGE,
+  };
+}
+constexpr auto array() {
+  return detail::private_array;
 }
 constexpr Color first() {
-  return static_cast<Color>(0);
+  return array().front();
 }
 constexpr Color last() {
-  return static_cast<Color>(count() - 1);
+  return array().back();
+}
+constexpr Color min() {
+  return static_cast<Color>(detail::min);
+}
+constexpr Color max() {
+  return static_cast<Color>(detail::max);
+}
+constexpr std::uint64_t count() { return array().size(); }
+constexpr std::string_view type_name() {
+  return std::string_view("Car::Color");
 }
 namespace detail {
-constexpr std::array<const char*, count()> enum_names =
-{{
-"RED",
-"GREEN",
-"BLUE",
-}};
+static_assert(count() != 0,
+              "There are no enumerator entries in the \"Color.enum\" file");
+template<typename _Tp>
+constexpr inline bool unique_entries(const _Tp array) {
+  for (std::size_t outer = 1; outer < array.size(); ++outer) {
+    for (std::size_t inner = 0; inner < outer; ++inner) {
+      if (array[outer] == array[inner]) {
+        return false;
+      }
+    }
+  }
+  return true;
 }
-constexpr const char* name(Color value) {
-  return detail::enum_names[static_cast<std::uint64_t>(value)];
+static_assert(unique_entries(array()),
+              "The enumerator entries must be unique: check enum Car::Color");
+constexpr auto enum_names = std::array {
+std::string_view("RED"),
+std::string_view("GREEN"),
+std::string_view("BLUE"),
+std::string_view("ORANGE"),
+};
+template<typename _Tp>
+constexpr inline std::size_t index_of(_Tp array, const Car::Color::Color val) {
+  for(std::size_t idx = 0; idx < array.size(); ++idx) {
+    if (array[idx] == val) {
+      return idx;
+    }
+  }
+  return -1;
+}
+}
+constexpr std::string_view name(Color entry) {
+  return detail::enum_names[detail::index_of(array(), entry)];
 }
 }
 }
 std::ostream& operator<<(std::ostream& stream, Car::Color::Color rhs)
 {
-  stream << std::string(Car::Color::name(rhs));
+  stream << Car::Color::name(rhs);
   return stream;
 }
 
