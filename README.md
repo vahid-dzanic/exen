@@ -1,6 +1,6 @@
-# EXEN EXetended ENumerations for C++
+# EXEN EXtended ENumerations for C++
 
-- [EXEN EXetended ENumerations for C++](#exen-exetended-enumerations-for-c)
+- [EXEN EXtended ENumerations for C++](#exen-extended-enumerations-for-c)
   - [Description](#description)
   - [How to](#how-to)
     - [Clone, Build, Test and Install](#clone-build-test-and-install)
@@ -18,7 +18,7 @@
 
 ## Description
 
-EXEN Exetended Enumerations is a header-only library, providing the possibility to create enumerations in C++ with compile-time (```constexpr```) enhancements.
+EXEN Extended Enumerations is a header-only library, providing the possibility to create enumerations in C++ with compile-time (```constexpr```) enhancements.
 Those enhancements are reflective information for example the last enumeration entry or the count of entries and so on. Enumerations created with EXEN also providing a string-converter for every enumeration-entry at compile-time (```constexpr```).
 
 With the EXEN framework created enumerations the enumeration-type is optimized in memory consumption and therefore in less cache misses.
