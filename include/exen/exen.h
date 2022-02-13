@@ -34,6 +34,10 @@
   #define __EXEN_ENUM_ENTRY(...) __EXEN_VARIABLE_MACRO_ARGUMENTS(__EXEN_ENUM_ENTRY, __VA_ARGS__)
 #endif //__EXEN_PREPROCESSOR_DEFINES
 
+#ifndef __EXEN_ENTRY_PREFIX
+#define __EXEN_ENTRY_PREFIX
+#endif //__EXEN_ENTRY_PREFIX
+
 #ifdef __EXEN_NAMESPACE
 namespace __EXEN_NAMESPACE {
 #endif //__EXEN_NAMESPACE
@@ -42,23 +46,23 @@ namespace detail {
 #define __EXEN_ENUM_P __EXEN_ENUM_P_DECL(__EXEN_ENUM_NAME)
 enum class __EXEN_ENUM_P
 {
-  #define __EXEN_ENUM_ENTRY_1(__enum_entry) __enum_entry,
-  #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) __enum_entry = __enum_value,
+  #define __EXEN_ENUM_ENTRY_1(__enum_entry) __EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
+  #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) __EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry) = __enum_value,
   #include __EXEN_INCLUDE_ENUM(__EXEN_ENUM_NAME)
   #undef __EXEN_ENUM_ENTRY_1
   #undef __EXEN_ENUM_ENTRY_2
 };
 
 constexpr auto min = std::min({
-    #define __EXEN_ENUM_ENTRY_1(__enum_entry) __EXEN_ENUM_P::__enum_entry,
-    #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) __EXEN_ENUM_P::__enum_entry,
+    #define __EXEN_ENUM_ENTRY_1(__enum_entry) __EXEN_ENUM_P::__EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
+    #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) __EXEN_ENUM_P::__EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
     #include __EXEN_INCLUDE_ENUM(__EXEN_ENUM_NAME)
     #undef __EXEN_ENUM_ENTRY_1
     #undef __EXEN_ENUM_ENTRY_2
   });
 constexpr auto max = std::max({
-    #define __EXEN_ENUM_ENTRY_1(__enum_entry) __EXEN_ENUM_P::__enum_entry,
-    #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) __EXEN_ENUM_P::__enum_entry,
+    #define __EXEN_ENUM_ENTRY_1(__enum_entry) __EXEN_ENUM_P::__EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
+    #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) __EXEN_ENUM_P::__EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
     #include __EXEN_INCLUDE_ENUM(__EXEN_ENUM_NAME)
     #undef __EXEN_ENUM_ENTRY_1
     #undef __EXEN_ENUM_ENTRY_2
@@ -77,8 +81,8 @@ using optimal_unsigned_integer_size_type =
 /** Enumeration __EXEN_ENUM_NAME */
 enum __EXEN_ENUM_NAME : detail::optimal_unsigned_integer_size_type
 {
-  #define __EXEN_ENUM_ENTRY_1(__enum_entry) __enum_entry,
-  #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) __enum_entry = __enum_value,
+  #define __EXEN_ENUM_ENTRY_1(__enum_entry) __EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
+  #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) __EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry) = __enum_value,
   #include __EXEN_INCLUDE_ENUM(__EXEN_ENUM_NAME)
   #undef __EXEN_ENUM_ENTRY_1
   #undef __EXEN_ENUM_ENTRY_2
@@ -86,8 +90,8 @@ enum __EXEN_ENUM_NAME : detail::optimal_unsigned_integer_size_type
 
 namespace detail {
 constexpr std::array private_array{
-    #define __EXEN_ENUM_ENTRY_1(__enum_entry) __EXEN_ENUM_NAME::__enum_entry,
-    #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) __EXEN_ENUM_NAME::__enum_entry,
+    #define __EXEN_ENUM_ENTRY_1(__enum_entry) __EXEN_ENUM_NAME::__EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
+    #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) __EXEN_ENUM_NAME::__EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
     #include __EXEN_INCLUDE_ENUM(__EXEN_ENUM_NAME)
     #undef __EXEN_ENUM_ENTRY_1
     #undef __EXEN_ENUM_ENTRY_2
@@ -193,5 +197,6 @@ std::ostream& operator<<(std::ostream& stream, __EXEN_ENUM_NAME::__EXEN_ENUM_NAM
 #undef __EXEN_ENUM_P
 #undef __EXEN_ENUM_NAME
 #undef __EXEN_NAMESPACE
+#undef __EXEN_ENTRY_PREFIX
 
 // clang-format on

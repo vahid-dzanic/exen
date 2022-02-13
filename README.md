@@ -27,9 +27,9 @@ With the EXEN framework created enumerations the enumeration-type is optimized i
 In case you have less than 256 enumeration entries it will deduct right size at compile time and choose for example in this case std::uint8_t. In case if there are more than 256 entries but less than 65536, it will deduct ```std::unit16_t```, and so on for the ```std::unit32_t``` and ```std::unit64_t```.
 
 <b>EXEN Version 2.0.0:</b>
-In the version 2.0.0 it's possible to define a value for each entry, with this the data type is deduced with the maximum value insted of using the number of entries.
+In the version 2.0.0 it's possible to define a value for each entry, with this the data type is deduced with the maximum value instead of using the number of entries.
 
-One more thing you get, it's possible to have the enumeration entries of a single enumeration in multiple files distributed. This enables for example to have at compile time a unique number for your components but not hardcoding them into the code upfront.
+One more thing you get, it's possible to have the enumeration entries of a single enumeration in multiple files distributed. This enables for example to have at compile time a unique number for your components but not hard-coding them into the code upfront.
 
 ## How to
 
@@ -68,22 +68,26 @@ Create an entry with the ```__EXEN_ENUM_ENTRY``` declaration.
 
 <b>EXEN Version 2.0.0:</b> If an entry has to have a special value defined, just add the value separated from the entry-name with comma to the ```__EXEN_ENUM_ENTRY``` declaration (e.g ```__EXEN_ENUM_ENTRY(GREEN, 7)```).
 
-Make sure that the Color.enum-file directory is in your buildsystems include-path.
+Make sure that the Color.enum-file directory is in your build-systems include-path.
 
 Create a header-file Color.h which will contain the enum name (Color) and the needed include.
 Define the name in the preprocessor variable ```__EXEN_ENUM_NAME Color```.
 The name defined in ```__EXEN_ENUM_NAME``` must correlate to the *.enum filename, which in this case is ```Color```.
 
 <b>Optionally</b> it's possible to define a ```namespace``` in which the enumeration and corresponding declarations will reside.
-Therefore define the namespace in the preprocessor variable ```__EXEN_NAMESPACE``` after the ```__EXEN_ENUM_NAME``` definition.
+Therefore define the namespace in the preprocessor variable ```__EXEN_NAMESPACE```.
+
+<b>Optionally</b> since <b>EXEN Version 2.1.0:</b> it's possible to define a prefix for the entry names without changing the string representation of it.
+Define the entry name prefix in the preprocessor variable ```__EXEN_ENTRY_PREFIX```.
 
 After that, include ```exen/exen.h``` and that’s it.
 
 ```cpp
 //Color.h
 #pragma once
-#define __EXEN_ENUM_NAME Color
 #define __EXEN_NAMESPACE Car
+#define __EXEN_ENUM_NAME Color
+#define __EXEN_ENTRY_PREFIX k
 #include "exen/exen.h"
 ```
 
@@ -127,7 +131,7 @@ int main(int, char**)
   }
   std::cout << "----" << "\n";
 
-  auto green = Car::Color::GREEN;
+  auto green = Car::Color::kGREEN;
 
   std::string str = Car::Color::name(green);
   std::cout << str << "\n";
@@ -202,7 +206,7 @@ The library consists of one header file ```exen.h```. In order to use the header
 * The filename where the ```__EXEN_ENUM_ENTRY```'s are defined must have the ```.enum``` extension
 * There must be one or more ```__EXEN_ENUM_ENTRY```'s defined.
 * Directories with ```*.enum``` files must be declared in the build-systems include-path.
-* Include the ```exen/exen.h```-header-file after the declarations ```__EXEN_ENUM_NAME``` and ```__EXEN_NAMESPACE```
+* Include the ```exen/exen.h```-header-file after the declarations ```__EXEN_ENUM_NAME```, ```__EXEN_NAMESPACE``` and ```__EXEN_ENTRY_PREFIX```
 
 The EXEN library uses the C++Preprocessor-Instructions to elaborate the potential count, the first and last entry or to get the string-representation.
 
@@ -229,10 +233,10 @@ namespace Color {
 
 enum Color : detail::optimal_unsigned_integer_size_type
 {
-RED = 0,
-GREEN = 1,
-BLUE = 55000,
-ORANGE,
+kRED = 0,
+kGREEN = 1,
+kBLUE = 55000,
+kORANGE,
 };
 
 constexpr auto array() {
@@ -278,22 +282,22 @@ namespace Color {
 namespace detail {
 enum class private_Color
 {
-RED = 0,
-GREEN = 1,
-BLUE = 55000,
-ORANGE,
+kRED = 0,
+kGREEN = 1,
+kBLUE = 55000,
+kORANGE,
 };
 constexpr auto min = std::min({
-private_Color::RED,
-private_Color::GREEN,
-private_Color::BLUE,
-private_Color::ORANGE,
+private_Color::kRED,
+private_Color::kGREEN,
+private_Color::kBLUE,
+private_Color::kORANGE,
   });
 constexpr auto max = std::max({
-private_Color::RED,
-private_Color::GREEN,
-private_Color::BLUE,
-private_Color::ORANGE,
+private_Color::kRED,
+private_Color::kGREEN,
+private_Color::kBLUE,
+private_Color::kORANGE,
   });
 using optimal_unsigned_integer_size_type =
   std::conditional<std::numeric_limits<std::uint8_t>::max() >= static_cast<std::uint64_t>(max), std::uint8_t,
@@ -306,17 +310,17 @@ using optimal_unsigned_integer_size_type =
 }
 enum Color : detail::optimal_unsigned_integer_size_type
 {
-RED = 0,
-GREEN = 1,
-BLUE = 55000,
-ORANGE,
+kRED = 0,
+kGREEN = 1,
+kBLUE = 55000,
+kORANGE,
 };
 namespace detail {
 constexpr std::array private_array{
-Color::RED,
-Color::GREEN,
-Color::BLUE,
-Color::ORANGE,
+Color::kRED,
+Color::kGREEN,
+Color::kBLUE,
+Color::kORANGE,
   };
 }
 constexpr auto array() {

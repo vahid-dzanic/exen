@@ -4,8 +4,11 @@ find_package(GTest REQUIRED)
 
 add_executable(colors_test
   src/Color/Color.h
+  src/Color/Color2.h
   src/Color/Color.enum
-  src/Color/colors.cpp)
+  src/Color/Color2.enum
+  src/Color/colors.cpp
+  src/Color/colors2.cpp)
 
 # target_compile_options(colors_test
 #  PRIVATE
