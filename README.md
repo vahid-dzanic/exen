@@ -80,6 +80,11 @@ Therefore define the namespace in the preprocessor variable ```__EXEN_NAMESPACE`
 <b>Optionally</b> since <b>EXEN Version 2.1.0:</b> it's possible to define a prefix for the entry names without changing the string representation of it.
 Define the entry name prefix in the preprocessor variable ```__EXEN_ENTRY_PREFIX```.
 
+<b>Optionally</b> since <b>EXEN Version 2.2.0:</b> it's possible to define an include-path with the preprocessor variable ```__EXEN_INCLUDE_DIR```, in case the enum-file is not within a definded include-directory.
+
+<b>Optionally</b> since <b>EXEN Version 2.2.0:</b> it's possible to define the file extension of the enum-file with the preprocessor variable ```__EXEN_FILE_EXTENSION```.
+The file extension is by default ```*.enum```.
+
 After that, include ```exen/exen.h``` and that’s it.
 
 ```cpp
