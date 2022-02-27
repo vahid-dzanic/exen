@@ -42,3 +42,27 @@ target_include_directories(colors_example
 target_link_libraries(colors_example
   PRIVATE
     ${PROJECT_NAME})
+
+add_executable(car_test
+  src/Car/Car.h
+  src/Car/Car.hpp
+  src/Car/Car.cpp)
+
+target_include_directories(car_test
+  PRIVATE
+    ${PROJECT_SOURCE_DIR}/test/src)
+
+#target_compile_options(car_test
+# PRIVATE
+#  -E
+#  -P)
+
+target_link_libraries(car_test
+  PRIVATE
+    ${PROJECT_NAME}
+    gtest
+    gmock
+    gtest_main
+    pthread)
+
+add_test(car_test car_test)

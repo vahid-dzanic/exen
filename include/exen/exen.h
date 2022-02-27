@@ -9,6 +9,7 @@
 #endif //__EXEN_ENUM_NAME
 
 #include <string>
+#include <string_view>
 #include <array>
 #include <limits>
 #include <algorithm>
@@ -30,13 +31,24 @@
   #define __EXEN_PP2STRS(A, B) __EXEN_PPSTR_NX(A::B)
 
   #define __EXEN_ENUM_P_DECL(_ce_name) __EXEN_PPCAT(private_, _ce_name)
-  #define __EXEN_INCLUDE_ENUM(_ce_file) __EXEN_PPSTR(_ce_file.enum)
   #define __EXEN_ENUM_ENTRY(...) __EXEN_VARIABLE_MACRO_ARGUMENTS(__EXEN_ENUM_ENTRY, __VA_ARGS__)
 #endif //__EXEN_PREPROCESSOR_DEFINES
 
 #ifndef __EXEN_ENTRY_PREFIX
 #define __EXEN_ENTRY_PREFIX
 #endif //__EXEN_ENTRY_PREFIX
+
+#ifdef __EXEN_FILE_EXTENSION
+#define __EXEN_EXTENSION __EXEN_FILE_EXTENSION
+#else //__EXEN_FILE_EXTENSION
+#define __EXEN_EXTENSION enum
+#endif //__EXEN_FILE_EXTENSION
+
+#ifdef __EXEN_INCLUDE_DIR
+#define __EXEN_INCLUDE __EXEN_PPSTR(__EXEN_INCLUDE_DIR/__EXEN_ENUM_NAME.__EXEN_EXTENSION)
+#else //__EXEN_INCLUDE_DIR
+#define __EXEN_INCLUDE __EXEN_PPSTR(__EXEN_ENUM_NAME.__EXEN_EXTENSION)
+#endif //__EXEN_INCLUDE_DIR
 
 #ifdef __EXEN_NAMESPACE
 namespace __EXEN_NAMESPACE {
@@ -48,7 +60,7 @@ enum class __EXEN_ENUM_P
 {
   #define __EXEN_ENUM_ENTRY_1(__enum_entry) __EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
   #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) __EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry) = __enum_value,
-  #include __EXEN_INCLUDE_ENUM(__EXEN_ENUM_NAME)
+  #include __EXEN_INCLUDE
   #undef __EXEN_ENUM_ENTRY_1
   #undef __EXEN_ENUM_ENTRY_2
 };
@@ -56,14 +68,14 @@ enum class __EXEN_ENUM_P
 constexpr auto min = std::min({
     #define __EXEN_ENUM_ENTRY_1(__enum_entry) __EXEN_ENUM_P::__EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
     #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) __EXEN_ENUM_P::__EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
-    #include __EXEN_INCLUDE_ENUM(__EXEN_ENUM_NAME)
+    #include __EXEN_INCLUDE
     #undef __EXEN_ENUM_ENTRY_1
     #undef __EXEN_ENUM_ENTRY_2
   });
 constexpr auto max = std::max({
     #define __EXEN_ENUM_ENTRY_1(__enum_entry) __EXEN_ENUM_P::__EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
     #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) __EXEN_ENUM_P::__EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
-    #include __EXEN_INCLUDE_ENUM(__EXEN_ENUM_NAME)
+    #include __EXEN_INCLUDE
     #undef __EXEN_ENUM_ENTRY_1
     #undef __EXEN_ENUM_ENTRY_2
   });
@@ -83,7 +95,7 @@ enum __EXEN_ENUM_NAME : detail::optimal_unsigned_integer_size_type
 {
   #define __EXEN_ENUM_ENTRY_1(__enum_entry) __EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
   #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) __EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry) = __enum_value,
-  #include __EXEN_INCLUDE_ENUM(__EXEN_ENUM_NAME)
+  #include __EXEN_INCLUDE
   #undef __EXEN_ENUM_ENTRY_1
   #undef __EXEN_ENUM_ENTRY_2
 };
@@ -92,7 +104,7 @@ namespace detail {
 constexpr std::array private_array{
     #define __EXEN_ENUM_ENTRY_1(__enum_entry) __EXEN_ENUM_NAME::__EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
     #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) __EXEN_ENUM_NAME::__EXEN_PPCAT(__EXEN_ENTRY_PREFIX, __enum_entry),
-    #include __EXEN_INCLUDE_ENUM(__EXEN_ENUM_NAME)
+    #include __EXEN_INCLUDE
     #undef __EXEN_ENUM_ENTRY_1
     #undef __EXEN_ENUM_ENTRY_2
   };
@@ -136,7 +148,7 @@ constexpr std::string_view type_name() {
 
 namespace detail {
 static_assert(count() != 0,
-              __EXEN_PPSTR(There are no enumerator entries in the __EXEN_INCLUDE_ENUM(__EXEN_ENUM_NAME) file));
+              __EXEN_PPSTR(There are no enumerator entries in the __EXEN_INCLUDE file));
 
 template<typename _Tp>
 constexpr inline bool unique_entries(const _Tp array) {
@@ -156,7 +168,7 @@ static_assert(unique_entries(array()),
 constexpr auto enum_names = std::array {
   #define __EXEN_ENUM_ENTRY_1(__enum_entry) std::string_view(#__enum_entry),
   #define __EXEN_ENUM_ENTRY_2(__enum_entry, __enum_value) std::string_view(#__enum_entry),
-  #include __EXEN_INCLUDE_ENUM(__EXEN_ENUM_NAME)
+  #include __EXEN_INCLUDE
   #undef __EXEN_ENUM_ENTRY_1
   #undef __EXEN_ENUM_ENTRY_2
 };
@@ -174,6 +186,10 @@ constexpr inline std::size_t index_of(_Tp array, const __EXEN_ENUM_NAME val) {
 /** Returns the string representation of the given enumeration entry. */
 constexpr std::string_view name(__EXEN_ENUM_NAME entry) {
   return detail::enum_names[detail::index_of(array(), entry)];
+}
+/** Returns the string representation of the given enumeration entry. */
+const std::string str(__EXEN_ENUM_NAME entry) {
+  return name(entry).data();
 }
 } // namespace __EXEN_ENUM_NAME
 #ifdef __EXEN_NAMESPACE
@@ -198,5 +214,9 @@ std::ostream& operator<<(std::ostream& stream, __EXEN_ENUM_NAME::__EXEN_ENUM_NAM
 #undef __EXEN_ENUM_NAME
 #undef __EXEN_NAMESPACE
 #undef __EXEN_ENTRY_PREFIX
+#undef __EXEN_FILE_EXTENSION
+#undef __EXEN_EXTENSION
+#undef __EXEN_INCLUDE_DIR
+#undef __EXEN_INCLUDE
 
 // clang-format on
