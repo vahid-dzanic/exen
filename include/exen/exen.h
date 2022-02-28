@@ -111,34 +111,34 @@ constexpr std::array private_array{
 } // namespace detail
 
 /** Returns a std::array containing all enumeration entries. */
-constexpr auto array() {
+inline constexpr auto array() {
   return detail::private_array;
 }
 
 /** Returns the first enumeration entry. */
-constexpr __EXEN_ENUM_NAME first() {
+inline constexpr __EXEN_ENUM_NAME first() {
   return array().front();
 }
 /** Returns the last enumeration entry. */
-constexpr __EXEN_ENUM_NAME last() {
+inline constexpr __EXEN_ENUM_NAME last() {
   return array().back();
 }
 
 /** Returns the smallest enumeration entry. */
-constexpr __EXEN_ENUM_NAME min() {
+inline constexpr __EXEN_ENUM_NAME min() {
   return static_cast<__EXEN_ENUM_NAME>(detail::min);
 }
 
 /** Returns the biggest enumeration entry. */
-constexpr __EXEN_ENUM_NAME max() {
+inline constexpr __EXEN_ENUM_NAME max() {
   return static_cast<__EXEN_ENUM_NAME>(detail::max);
 }
 
 /** Returns the count of enumeration entries. */
-constexpr std::uint64_t count() { return array().size(); }
+inline constexpr std::uint64_t count() { return array().size(); }
 
 /** Returns the name of the enumeration type itself. */
-constexpr std::string_view type_name() {
+inline constexpr std::string_view type_name() {
 #ifdef __EXEN_NAMESPACE
   return std::string_view(__EXEN_PP2STRS(__EXEN_NAMESPACE, __EXEN_ENUM_NAME));
 #else //__EXEN_NAMESPACE
@@ -151,7 +151,7 @@ static_assert(count() != 0,
               __EXEN_PPSTR(There are no enumerator entries in the __EXEN_INCLUDE file));
 
 template<typename _Tp>
-constexpr inline bool unique_entries(const _Tp array) {
+inline constexpr bool unique_entries(const _Tp array) {
   for (std::size_t outer = 1; outer < array.size(); ++outer) {
     for (std::size_t inner = 0; inner < outer; ++inner) {
       if (array[outer] == array[inner]) {
@@ -173,7 +173,7 @@ constexpr auto enum_names = std::array {
   #undef __EXEN_ENUM_ENTRY_2
 };
 template<typename _Tp>
-constexpr inline std::size_t index_of(_Tp array, const __EXEN_ENUM_NAME val) {
+inline constexpr std::size_t index_of(_Tp array, const __EXEN_ENUM_NAME val) {
   for(std::size_t idx = 0; idx < array.size(); ++idx) {
     if (array[idx] == val) {
       return idx;
@@ -184,11 +184,11 @@ constexpr inline std::size_t index_of(_Tp array, const __EXEN_ENUM_NAME val) {
 } // namespace detail
 
 /** Returns the string representation of the given enumeration entry. */
-constexpr std::string_view name(__EXEN_ENUM_NAME entry) {
+inline constexpr std::string_view name(__EXEN_ENUM_NAME entry) {
   return detail::enum_names[detail::index_of(array(), entry)];
 }
 /** Returns the string representation of the given enumeration entry. */
-const std::string str(__EXEN_ENUM_NAME entry) {
+inline const std::string str(__EXEN_ENUM_NAME entry) {
   return name(entry).data();
 }
 } // namespace __EXEN_ENUM_NAME
@@ -197,13 +197,13 @@ const std::string str(__EXEN_ENUM_NAME entry) {
 #endif //__EXEN_NAMESPACE
 
 #ifdef __EXEN_NAMESPACE
-std::ostream& operator<<(std::ostream& stream, __EXEN_NAMESPACE::__EXEN_ENUM_NAME::__EXEN_ENUM_NAME rhs)
+inline std::ostream& operator<<(std::ostream& stream, __EXEN_NAMESPACE::__EXEN_ENUM_NAME::__EXEN_ENUM_NAME rhs)
 {
   stream << __EXEN_NAMESPACE::__EXEN_ENUM_NAME::name(rhs);
   return stream;
 }
 #else //__EXEN_NAMESPACE
-std::ostream& operator<<(std::ostream& stream, __EXEN_ENUM_NAME::__EXEN_ENUM_NAME rhs)
+inline std::ostream& operator<<(std::ostream& stream, __EXEN_ENUM_NAME::__EXEN_ENUM_NAME rhs)
 {
   stream << __EXEN_ENUM_NAME::name(rhs);
   return stream;
